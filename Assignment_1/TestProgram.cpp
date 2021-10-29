@@ -21,6 +21,7 @@ int main() {
 		PrintMenu();
 		std::cout << "Choice: ";
 		std::cin >> choice;
+		std::cout << std::endl;
 
 		switch (choice)
 		{
@@ -29,10 +30,14 @@ int main() {
 			break;
 		case 2:
 			SortBooks(bookdata);
-			PrintMenu();
+
+			PrintBooks(bookdata);
 			break;
 		case 3:
+			quit = true;
+			break;
 		default:
+			std::cout << "Invalid entry!" << std::endl;
 			break;
 		}
 
@@ -45,13 +50,18 @@ int main() {
 
 void AddNewBook(std::vector<Book>* bookdata)
 {
-	std::string author{ "" }, title{ "" }, date{ "" };
+	std::string author="", title="", date="";
 	std::cout << "Enter title: ";
-	std::cin >> title;
+	std::getline(std::cin>>std::ws, title);
+	//std::cin.clear();
+	//std::cout << std::endl;
 	std::cout << "Enter author: ";
-	std::cin >> author;
+	std::getline(std::cin, author);
+	//std::cin.clear();
+	//std::cout << std::endl;
 	std::cout << "Enter date: ";
 	std::cin >> date;
+	//std::cout << std::endl;
 	Book bb(author, date, title);
 	bookdata->push_back(bb);
 }
@@ -71,7 +81,7 @@ void SortBooks(std::vector<Book>& bookdata)
 void PrintMenu()
 {
 	std::cout << "--------------------------------------------------------------------\n"
-		<< "                     Book Test program                      "
+		<< "                     Book Test program                      \n"
 		<< "--------------------------------------------------------------------\n"
 		<< "Select from the following choices:\n"
 		<< "1. Add new book\n"
