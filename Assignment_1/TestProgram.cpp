@@ -30,7 +30,7 @@ int main() {
 			break;
 		case 2:
 			SortBooks(bookdata);
-
+			std::cout << "The books entered so far, sorted alphabetically by author are:\n";
 			PrintBooks(bookdata);
 			break;
 		case 3:
@@ -53,25 +53,27 @@ void AddNewBook(std::vector<Book>* bookdata)
 	std::string author="", title="", date="";
 	std::cout << "Enter title: ";
 	std::getline(std::cin>>std::ws, title);
-	//std::cin.clear();
-	//std::cout << std::endl;
 	std::cout << "Enter author: ";
-	std::getline(std::cin, author);
-	//std::cin.clear();
-	//std::cout << std::endl;
+	std::getline(std::cin>>std::ws, author);
 	std::cout << "Enter date: ";
 	std::cin >> date;
-	//std::cout << std::endl;
+
 	Book bb(author, date, title);
 	bookdata->push_back(bb);
 }
 
 void PrintBooks(std::vector<Book>& bookdata)
 {
-	for (auto book : bookdata) {
-		book.display();
+	if (bookdata.empty()) {
+		std::cout << "Book collection is empty!";
+	}
+	else {
+		for (auto book : bookdata) {
+			book.display();
+		}
 	}
 }
+	
 
 void SortBooks(std::vector<Book>& bookdata)
 {
