@@ -29,9 +29,16 @@ int main() {
 			AddNewBook(&bookdata);
 			break;
 		case 2:
-			SortBooks(bookdata);
-			std::cout << "The books entered so far, sorted alphabetically by author are:\n";
-			PrintBooks(bookdata);
+			if (bookdata.empty()) {
+				std::cout << "Book collection is empty!" << std::endl;
+			}
+			else {
+				SortBooks(bookdata);
+				std::cout << "The books entered so far, sorted alphabetically by author are:\n";
+				PrintBooks(bookdata);
+			}
+
+			
 			break;
 		case 3:
 			quit = true;
@@ -64,14 +71,12 @@ void AddNewBook(std::vector<Book>* bookdata)
 
 void PrintBooks(std::vector<Book>& bookdata)
 {
-	if (bookdata.empty()) {
-		std::cout << "Book collection is empty!";
-	}
-	else {
+	
+	
 		for (auto book : bookdata) {
 			book.display();
 		}
-	}
+	
 }
 	
 
